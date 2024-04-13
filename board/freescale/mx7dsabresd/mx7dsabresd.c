@@ -646,7 +646,7 @@ static int setup_fec(void)
 		(IOMUXC_GPR_GPR1_GPR_ENET1_TX_CLK_SEL_MASK |
 		 IOMUXC_GPR_GPR1_GPR_ENET1_CLK_DIR_MASK), 0);
 
-	ret = set_clk_enet(ENET_125MHz);
+	ret = set_clk_enet(ENET_50MHz);
 	if (ret)
 		return ret;
 
