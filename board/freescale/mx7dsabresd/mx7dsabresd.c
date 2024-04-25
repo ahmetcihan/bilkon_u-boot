@@ -152,14 +152,14 @@ static iomux_v3_cfg_t const usdhc3_emmc_pads[] = {
 };
 
 #define IOX_SDI IMX_GPIO_NR(1, 9)
-#define IOX_STCP IMX_GPIO_NR(1, 12)
+//#define IOX_STCP IMX_GPIO_NR(1, 12)
 #define IOX_SHCP IMX_GPIO_NR(1, 13)
 
 static iomux_v3_cfg_t const iox_pads[] = {
 	/* IOX_SDI */
 	MX7D_PAD_GPIO1_IO09__GPIO1_IO9	| MUX_PAD_CTRL(NO_PAD_CTRL),
 	/* IOX_STCP */
-	MX7D_PAD_GPIO1_IO12__GPIO1_IO12	| MUX_PAD_CTRL(NO_PAD_CTRL),
+	//MX7D_PAD_GPIO1_IO12__GPIO1_IO12	| MUX_PAD_CTRL(NO_PAD_CTRL),
 	/* IOX_SHCP */
 	MX7D_PAD_GPIO1_IO13__GPIO1_IO13	| MUX_PAD_CTRL(NO_PAD_CTRL),
 };
@@ -217,12 +217,12 @@ void iox74lv_init(void)
 		udelay(500);
 	}
 
-	gpio_direction_output(IOX_STCP, 0);
+	//gpio_direction_output(IOX_STCP, 0);
 	udelay(500);
 	/*
 	  * shift register will be output to pins
 	  */
-	gpio_direction_output(IOX_STCP, 1);
+	//gpio_direction_output(IOX_STCP, 1);
 
 	for (i = 7; i >= 0; i--) {
 		gpio_direction_output(IOX_SHCP, 0);
@@ -231,12 +231,12 @@ void iox74lv_init(void)
 		gpio_direction_output(IOX_SHCP, 1);
 		udelay(500);
 	}
-	gpio_direction_output(IOX_STCP, 0);
+	//gpio_direction_output(IOX_STCP, 0);
 	udelay(500);
 	/*
 	  * shift register will be output to pins
 	  */
-	gpio_direction_output(IOX_STCP, 1);
+	//gpio_direction_output(IOX_STCP, 1);
 };
 
 void iox74lv_set(int index)
@@ -254,12 +254,12 @@ void iox74lv_set(int index)
 		udelay(500);
 	}
 
-	gpio_direction_output(IOX_STCP, 0);
+	//gpio_direction_output(IOX_STCP, 0);
 	udelay(500);
 	/*
 	  * shift register will be output to pins
 	  */
-	gpio_direction_output(IOX_STCP, 1);
+	//gpio_direction_output(IOX_STCP, 1);
 
 	for (i = 7; i >= 0; i--) {
 		gpio_direction_output(IOX_SHCP, 0);
@@ -269,12 +269,12 @@ void iox74lv_set(int index)
 		udelay(500);
 	}
 
-	gpio_direction_output(IOX_STCP, 0);
+	//gpio_direction_output(IOX_STCP, 0);
 	udelay(500);
 	/*
 	  * shift register will be output to pins
 	  */
-	gpio_direction_output(IOX_STCP, 1);
+	//gpio_direction_output(IOX_STCP, 1);
 };
 
 
@@ -441,15 +441,19 @@ static iomux_v3_cfg_t const fec1_pads[] = {
 	MX7D_PAD_ENET1_RGMII_RX_CTL__ENET1_RGMII_RX_CTL | MUX_PAD_CTRL(ENET_RX_PAD_CTRL),
 	MX7D_PAD_ENET1_RGMII_RD0__ENET1_RGMII_RD0 | MUX_PAD_CTRL(ENET_RX_PAD_CTRL),
 	MX7D_PAD_ENET1_RGMII_RD1__ENET1_RGMII_RD1 | MUX_PAD_CTRL(ENET_RX_PAD_CTRL),
-	MX7D_PAD_ENET1_RGMII_RD2__ENET1_RGMII_RD2 | MUX_PAD_CTRL(ENET_RX_PAD_CTRL),
-	MX7D_PAD_ENET1_RGMII_RD3__ENET1_RGMII_RD3 | MUX_PAD_CTRL(ENET_RX_PAD_CTRL),
-	MX7D_PAD_ENET1_RGMII_RXC__ENET1_RGMII_RXC | MUX_PAD_CTRL(ENET_RX_PAD_CTRL),
+	MX7D_PAD_ENET1_RGMII_RXC__ENET1_RX_ER | MUX_PAD_CTRL(ENET_RX_PAD_CTRL),
+	
 	MX7D_PAD_ENET1_RGMII_TX_CTL__ENET1_RGMII_TX_CTL | MUX_PAD_CTRL(ENET_PAD_CTRL),
 	MX7D_PAD_ENET1_RGMII_TD0__ENET1_RGMII_TD0 | MUX_PAD_CTRL(ENET_PAD_CTRL),
 	MX7D_PAD_ENET1_RGMII_TD1__ENET1_RGMII_TD1 | MUX_PAD_CTRL(ENET_PAD_CTRL),
-	MX7D_PAD_ENET1_RGMII_TD2__ENET1_RGMII_TD2 | MUX_PAD_CTRL(ENET_PAD_CTRL),
-	MX7D_PAD_ENET1_RGMII_TD3__ENET1_RGMII_TD3 | MUX_PAD_CTRL(ENET_PAD_CTRL),
-	MX7D_PAD_ENET1_RGMII_TXC__ENET1_RGMII_TXC | MUX_PAD_CTRL(ENET_PAD_CTRL),
+	//MX7D_PAD_ENET1_RGMII_TXC__ENET1_RGMII_TXC | MUX_PAD_CTRL(ENET_PAD_CTRL),
+	
+	//MX7D_PAD_UART3_RX_DATA__ENET1_1588_EVENT0_IN | MUX_PAD_CTRL(ENET_PAD_CTRL), // Interrupt
+	
+	//MX7D_PAD_GPIO1_IO12__CCM_ENET_REF_CLK1 | MUX_PAD_CTRL(ENET_PAD_CTRL),
+	//MX7D_PAD_GPIO1_IO12__CCM_ENET_REF_CLK1 | MUX_PAD_CTRL(ENET_PAD_CTRL) | MUX_MODE_SION,
+	MX7D_PAD_GPIO1_IO12__CCM_ENET_REF_CLK1 | MUX_PAD_CTRL(ENET_PAD_CTRL),
+	
 	MX7D_PAD_GPIO1_IO10__ENET1_MDIO | MUX_PAD_CTRL(ENET_PAD_CTRL_MII),
 	MX7D_PAD_GPIO1_IO11__ENET1_MDC | MUX_PAD_CTRL(ENET_PAD_CTRL_MII),
 };
@@ -657,10 +661,13 @@ static int setup_fec(void)
 int board_phy_config(struct phy_device *phydev)
 {
 	/* enable rgmii rxc skew and phy mode select to RGMII copper */
-	phy_write(phydev, MDIO_DEVAD_NONE, 0x1e, 0x21);
-	phy_write(phydev, MDIO_DEVAD_NONE, 0x1f, 0x7ea8);
-	phy_write(phydev, MDIO_DEVAD_NONE, 0x1e, 0x2f);
-	phy_write(phydev, MDIO_DEVAD_NONE, 0x1f, 0x71b7);
+	
+	printf("my name is Ahmet, it is here");
+	phy_write(phydev, MDIO_DEVAD_NONE, 0x1f, 0x4000);
+	//phy_write(phydev, MDIO_DEVAD_NONE, 0x1e, 0x21);
+	//phy_write(phydev, MDIO_DEVAD_NONE, 0x1f, 0x7ea8);
+	//phy_write(phydev, MDIO_DEVAD_NONE, 0x1e, 0x2f);
+	//phy_write(phydev, MDIO_DEVAD_NONE, 0x1f, 0x71b7);
 
 	if (phydev->drv->config)
 		phydev->drv->config(phydev);
