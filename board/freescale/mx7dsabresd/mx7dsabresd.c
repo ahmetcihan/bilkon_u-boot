@@ -446,12 +446,6 @@ static iomux_v3_cfg_t const fec1_pads[] = {
 	MX7D_PAD_ENET1_RGMII_TX_CTL__ENET1_RGMII_TX_CTL | MUX_PAD_CTRL(ENET_PAD_CTRL),
 	MX7D_PAD_ENET1_RGMII_TD0__ENET1_RGMII_TD0 | MUX_PAD_CTRL(ENET_PAD_CTRL),
 	MX7D_PAD_ENET1_RGMII_TD1__ENET1_RGMII_TD1 | MUX_PAD_CTRL(ENET_PAD_CTRL),
-	//MX7D_PAD_ENET1_RGMII_TXC__ENET1_RGMII_TXC | MUX_PAD_CTRL(ENET_PAD_CTRL),
-	
-	//MX7D_PAD_UART3_RX_DATA__ENET1_1588_EVENT0_IN | MUX_PAD_CTRL(ENET_PAD_CTRL), // Interrupt
-	
-	//MX7D_PAD_GPIO1_IO12__CCM_ENET_REF_CLK1 | MUX_PAD_CTRL(ENET_PAD_CTRL),
-	//MX7D_PAD_GPIO1_IO12__CCM_ENET_REF_CLK1 | MUX_PAD_CTRL(ENET_PAD_CTRL) | MUX_MODE_SION,
 	MX7D_PAD_GPIO1_IO12__CCM_ENET_REF_CLK1 | MUX_PAD_CTRL(ENET_PAD_CTRL),
 	
 	MX7D_PAD_GPIO1_IO10__ENET1_MDIO | MUX_PAD_CTRL(ENET_PAD_CTRL_MII),
@@ -660,14 +654,8 @@ static int setup_fec(void)
 
 int board_phy_config(struct phy_device *phydev)
 {
-	/* enable rgmii rxc skew and phy mode select to RGMII copper */
-	
-	printf("my name is Ahmet, it is here");
-	phy_write(phydev, MDIO_DEVAD_NONE, 0x1f, 0x4000);
-	//phy_write(phydev, MDIO_DEVAD_NONE, 0x1e, 0x21);
-	//phy_write(phydev, MDIO_DEVAD_NONE, 0x1f, 0x7ea8);
-	//phy_write(phydev, MDIO_DEVAD_NONE, 0x1e, 0x2f);
-	//phy_write(phydev, MDIO_DEVAD_NONE, 0x1f, 0x71b7);
+
+	phy_write(phydev, MDIO_DEVAD_NONE, 0x1f, 0x4000);	//software reset
 
 	if (phydev->drv->config)
 		phydev->drv->config(phydev);
